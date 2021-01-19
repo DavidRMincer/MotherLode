@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Rotate_script : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float rotationSpeed;
+    public Vector3 rotationVec;
+
+    private Rigidbody _rb;
+
+    private void Start()
     {
-        
+        _rb = GetComponent<Rigidbody>();
+        _rb.useGravity = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        _rb.angularVelocity = rotationVec * rotationSpeed;
     }
 }
