@@ -14,6 +14,8 @@ public class Rotate_script : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _rb.useGravity = false;
+
+        rotationVec = rotationVec.normalized;
     }
 
     private void FixedUpdate()
