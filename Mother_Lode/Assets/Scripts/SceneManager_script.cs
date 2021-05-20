@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneManager_script : MonoBehaviour
 {
-    public List<AssetMovement_script> Timeline = new List<AssetMovement_script>();
+    public List<Action_script> Timeline = new List<Action_script>();
 
     private bool _finished = false;
 

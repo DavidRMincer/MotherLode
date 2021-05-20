@@ -14,9 +14,9 @@ public class AssetMovement_script : Action_script
         actionType = ActionTypeEnum.MOVE;
     }
 
-    public virtual void Act()
+    public override void Act()
     {
-        base.Act();
+        //base.Act();
         StartCoroutine(MoveAssetIEnum());
     }
 
@@ -26,26 +26,30 @@ public class AssetMovement_script : Action_script
     /// <returns></returns>
     private IEnumerator MoveAssetIEnum()
     {
-        float counter = 0;
-        Transform prevTransform = asset.transform;
-        Vector3 distance = newTransform.position - asset.transform.position;
-        
-        do
+        if (duration == 0)
         {
-            counter = (counter + Time.deltaTime > duration) ? duration : counter + Time.deltaTime;
-            float time = curve.Evaluate(counter / duration);
+            asset.transform.position = newTransform.position;
+            asset.transform.rotation = newTransform.rotation;
 
-            Vector3 newPos = prevTransform.position + (distance * time);
+            yield return 0;
+        }
+        else
+        {
+            float counter = 0;
+            Vector3 prevPos = asset.transform.position;
+            Quaternion prevRot = asset.transform.rotation;
 
-            Debug.Log(counter / duration);
+            do
+            {
+                counter = (counter + Time.deltaTime > duration) ? duration : counter + Time.deltaTime;
+                float percentage = curve.Evaluate(counter / duration);
 
-            asset.transform.position = newPos;
+                asset.transform.position = Vector3.Lerp(prevPos, newTransform.position, percentage);
+                asset.transform.rotation = Quaternion.Lerp(prevRot, newTransform.rotation, percentage);
 
-            //asset.transform.position = Vector3.Lerp(prevTransform.position, newTransform.position, curve.Evaluate(counter / duration));
-            //asset.transform.rotation = Quaternion.Lerp(prevTransform.rotation, newTransform.rotation, curve.Evaluate(counter / duration));
+                yield return new WaitForSeconds(Time.deltaTime);
+            } while (counter < duration);
 
-            yield return new WaitForSeconds(Time.deltaTime);
-
-        } while (counter < duration);
+        }
     }
 }

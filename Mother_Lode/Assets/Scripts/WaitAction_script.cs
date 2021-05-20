@@ -18,9 +18,9 @@ public class WaitAction_script : Action_script
         actionType = ActionTypeEnum.WAIT;
     }
 
-    public virtual void Act()
+    public override void Act()
     {
-        base.Act();
+        //base.Act();
         CompletionState = CompletionStateEnum.ACTIVE;
         StartCoroutine(WaitIEnumerator());
     }

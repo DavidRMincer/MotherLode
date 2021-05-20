@@ -11,7 +11,7 @@ public class Action_script : MonoBehaviour
 
     public ActionTypeEnum actionType;
 
-    public void Act()
+    public virtual void Act()
     {
         
     }
