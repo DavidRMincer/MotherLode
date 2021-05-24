@@ -10,12 +10,14 @@ public class WaitAction_script : Action_script
     }
 
     public float Duration;
+    internal CompletionStateEnum CompletionState = CompletionStateEnum.BEGINNING;
 
-    private CompletionStateEnum CompletionState = CompletionStateEnum.BEGINNING;
+    private float _remainingTime;
 
     private void Start()
     {
         actionType = ActionTypeEnum.WAIT;
+        _remainingTime = Duration;
     }
 
     public override void Act()
@@ -27,7 +29,17 @@ public class WaitAction_script : Action_script
 
     private IEnumerator WaitIEnumerator()
     {
-        yield return new WaitForSeconds(Duration);
+        do
+        {
+            _remainingTime -= Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+        } while (_remainingTime > 0f);
+        
         CompletionState = CompletionStateEnum.FINISHED;
+    }
+
+    public float GetRemainingTime()
+    {
+        return _remainingTime;
     }
 }
