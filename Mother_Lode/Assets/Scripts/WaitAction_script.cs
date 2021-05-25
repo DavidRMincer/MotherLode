@@ -24,6 +24,7 @@ public class WaitAction_script : Action_script
     {
         //base.Act();
         CompletionState = CompletionStateEnum.ACTIVE;
+        _remainingTime = Duration;
         StartCoroutine(WaitIEnumerator());
     }
 

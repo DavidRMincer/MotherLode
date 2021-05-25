@@ -6,12 +6,17 @@ public class SceneManager_script : MonoBehaviour
 {
     public List<Action_script> Timeline = new List<Action_script>();
 
-    internal bool _finished = false;
+    internal bool finished = false;
 
     private int _index = 0;
     private bool _indexCompleted = false;
 
     private void Start()
+    {
+        
+    }
+
+    public void AnimateScene()
     {
         StartCoroutine(AnimateEnum());
     }
@@ -31,6 +36,7 @@ public class SceneManager_script : MonoBehaviour
             }
         }
 
+        finished = true;
         yield return 0;
     }
 }
