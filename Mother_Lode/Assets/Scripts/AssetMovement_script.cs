@@ -45,7 +45,20 @@ public class AssetMovement_script : Action_script
                 float percentage = curve.Evaluate(counter / duration);
 
                 asset.transform.position = Vector3.Lerp(prevPos, newTransform.position, percentage);
-                asset.transform.rotation = Quaternion.Lerp(prevRot, newTransform.rotation, percentage);
+
+                Quaternion newRotation = Quaternion.identity;
+                newRotation.x = prevRot.x + ((newTransform.rotation.x - prevRot.x) * percentage);
+                newRotation.y = prevRot.y + ((newTransform.rotation.y - prevRot.y) * percentage);
+                newRotation.z = prevRot.z + ((newTransform.rotation.z - prevRot.z) * percentage);
+                newRotation.w = prevRot.w + ((newTransform.rotation.w - prevRot.w) * percentage);
+
+                //newRotation.x = prevRot.x * (1f - percentage) + newTransform.rotation.x * (percentage);
+                //newRotation.y = prevRot.y * (1f - percentage) + newTransform.rotation.y * (percentage);
+                //newRotation.z = prevRot.z * (1f - percentage) + newTransform.rotation.z * (percentage);
+                //newRotation.w = prevRot.w * (1f - percentage) + newTransform.rotation.w * (percentage);
+                asset.transform.rotation = newRotation;
+
+                //asset.transform.rotation = Quaternion.Slerp(prevRot, newTransform.rotation, percentage);
 
                 yield return new WaitForSeconds(Time.deltaTime);
             } while (counter < duration);
