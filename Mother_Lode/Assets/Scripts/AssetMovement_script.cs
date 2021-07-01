@@ -7,7 +7,10 @@ public class AssetMovement_script : Action_script
     public GameObject asset;
     public Transform newTransform;
     public float duration;
-    public AnimationCurve curve;
+    public AnimationCurve rotationCurve,
+        xTranslateCurve,
+        yTranslateCurve,
+        zTranslateCurve;
 
     private void Start()
     {
@@ -42,9 +45,14 @@ public class AssetMovement_script : Action_script
             do
             {
                 counter = (counter + Time.deltaTime > duration) ? duration : counter + Time.deltaTime;
-                float percentage = curve.Evaluate(counter / duration);
+                float percentage = rotationCurve.Evaluate(counter / duration);
 
-                asset.transform.position = Vector3.Lerp(prevPos, newTransform.position, percentage);
+                Vector3 newPos = new Vector3(Vector3.Lerp(prevPos, newTransform.position, xTranslateCurve.Evaluate(counter / duration)).x,
+                    Vector3.Lerp(prevPos, newTransform.position, yTranslateCurve.Evaluate(counter / duration)).y,
+                    Vector3.Lerp(prevPos, newTransform.position, zTranslateCurve.Evaluate(counter / duration)).z);
+                asset.transform.position = newPos;
+
+                //asset.transform.position = Vector3.Lerp(prevPos, newTransform.position, percentage);
                 asset.transform.rotation = Quaternion.Lerp(prevRot, newTransform.rotation, percentage);
 
                 //Quaternion newRotation = Quaternion.identity;
