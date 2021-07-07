@@ -4778,6 +4778,24 @@ MonoBehaviour:
     type: 3}
   leftGun: {fileID: 8315229401076780398}
   rightGun: {fileID: 6936390511597701296}
+--- !u!114 &5261349152959979691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7489000690233759729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8561148016347910372
 GameObject:
   m_ObjectHideFlags: 0
@@ -4913,6 +4931,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a1ac259d1101a134dac3b8600c9dcc7f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 070202becfb2c2a43b5654f756ae3325, type: 3}
+--- !u!1 &7489000690233759729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 070202becfb2c2a43b5654f756ae3325,
+    type: 3}
+  m_PrefabInstance: {fileID: 7489000690233659729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7489000690234051537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 070202becfb2c2a43b5654f756ae3325,
