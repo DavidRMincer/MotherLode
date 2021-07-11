@@ -11,6 +11,7 @@ public class AssetMovement_script : Action_script
         xTranslateCurve,
         yTranslateCurve,
         zTranslateCurve;
+    public bool trackDebug;
 
     private void Start()
     {
@@ -20,7 +21,9 @@ public class AssetMovement_script : Action_script
     public override void Act()
     {
         //base.Act();
+        //Debug.Log("Before: " + asset.transform.position);
         StartCoroutine(MoveAssetIEnum());
+        //Debug.Log("After: " + asset.transform.position);
     }
 
     /// <summary>
@@ -31,10 +34,10 @@ public class AssetMovement_script : Action_script
     {
         if (duration == 0)
         {
+            if (trackDebug)
+                Debug.Log(asset + " Before: " + asset.transform.position);
             asset.transform.position = newTransform.position;
             asset.transform.rotation = newTransform.rotation;
-
-            yield return 0;
         }
         else
         {
@@ -44,6 +47,7 @@ public class AssetMovement_script : Action_script
 
             do
             {
+                //Debug.Log(asset + ": going");
                 counter = (counter + Time.deltaTime > duration) ? duration : counter + Time.deltaTime;
                 float percentage = rotationCurve.Evaluate(counter / duration);
 
@@ -71,7 +75,10 @@ public class AssetMovement_script : Action_script
 
                 yield return new WaitForSeconds(Time.deltaTime);
             } while (counter < duration);
-
         }
+
+        if (trackDebug)
+            Debug.Log(asset + " After: " + asset.transform.position);
+        yield return 0;
     }
 }
