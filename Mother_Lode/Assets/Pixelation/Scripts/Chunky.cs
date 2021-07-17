@@ -13,8 +13,11 @@ namespace Assets.Pixelation.Scripts
 
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
-            float w = Camera.main.pixelWidth;
-            float h = Camera.main.pixelHeight;
+            float w = this.GetComponent<Camera>().pixelWidth;
+            float h = this.GetComponent<Camera>().pixelHeight;
+
+            //float w = Camera.main.pixelWidth;
+            //float h = Camera.main.pixelHeight;
             Vector2 count = new Vector2(w/SprTex.height, h/SprTex.height);
             Vector2 size = new Vector2(1.0f/count.x, 1.0f/count.y);
             //
