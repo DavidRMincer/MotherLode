@@ -9420,7 +9420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847936381963231673}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.435, y: -0.104, z: 3.21}
+  m_LocalPosition: {x: -2.435, y: -0.104, z: 3.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 778775646353277414}
@@ -9437,6 +9437,7 @@ GameObject:
   - component: {fileID: 3337554530560792445}
   - component: {fileID: 7652818229181824544}
   - component: {fileID: 4474862956868333947}
+  - component: {fileID: 25316892617720780}
   m_Layer: 0
   m_Name: Defendship
   m_TagString: Untagged
@@ -9492,6 +9493,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipMesh: {fileID: 7489000690233759729}
   particles: {fileID: 2967918504035388546}
+--- !u!135 &25316892617720780
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337554530560792442}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.5
+  m_Center: {x: 0, y: 0, z: 0.1}
 --- !u!114 &5261349152959979691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9573,7 +9587,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8561148016347910372}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.41, y: -0.104, z: 3.21}
+  m_LocalPosition: {x: 2.41, y: -0.104, z: 3.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 778775646353277414}
