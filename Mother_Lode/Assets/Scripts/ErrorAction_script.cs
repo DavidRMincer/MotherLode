@@ -16,7 +16,8 @@ public class ErrorAction_script : Action_script
                         minBleedShift,
                         maxBleedShift,
                         errorDuration,
-                        errorFrequency;
+                        errorFrequency,
+                        waitDuration;
 
     private ShaderEffect_Scanner _scanner;
     private ShaderEffect_Unsync _unsync;
@@ -33,17 +34,19 @@ public class ErrorAction_script : Action_script
 
     public override void Act()
     {
-        StartCoroutine(GlitchIEnum(errorDuration, errorFrequency));
+        StartCoroutine(GlitchIEnum());
     }
 
-    private IEnumerator GlitchIEnum(float duration, float frequency)
+    private IEnumerator GlitchIEnum()
     {
-        float counter = 0f;
+        float counter = 0f,
+            waitAmount = errorDuration / errorFrequency;
 
+        yield return new WaitForSeconds(waitDuration);
 
         do
         {
-            counter += frequency;
+            counter += waitAmount;
 
             switch (Random.Range(1, 4))
             {
@@ -78,8 +81,8 @@ public class ErrorAction_script : Action_script
                     break;
             }
             
-            yield return new WaitForSeconds(frequency);
-        } while (counter < duration);
+            yield return new WaitForSeconds(waitAmount);
+        } while (counter < errorDuration);
 
         _scanner.enabled = false;
         _unsync.enabled = false;
